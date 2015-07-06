@@ -98,7 +98,7 @@ def create_scenario_stub_collection():
     
     log.info('creating scenario_stub index')
     
-    db.tracker.create_index([("stub.priority", ASCENDING), ("scenario", ASCENDING)], background=True) 
+    db.scenario_stub.create_index([("stub.priority", ASCENDING), ("scenario", ASCENDING)], background=True) 
     log.info('created index: {0}'.format(db.scenario_stub.index_information()))  
 
 def purge_stubs():
