@@ -99,6 +99,7 @@ Note you need to create log & etc dirs under the dir you call stubo from:
     $ mkdir log etc
     $ cp ../stubo-app/*.ini etc 
     $ create_tracker_collection
+    $ create_scenario_stub_collection
     
     $ stubo
     

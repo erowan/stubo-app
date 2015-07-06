@@ -77,6 +77,29 @@ def create_tracker_collection():
     
     log.info('created indexes: {0}'.format(db.tracker.index_information()))    
     
+def create_scenario_stub_collection():
+    parser = ArgumentParser(
+          description="Create scenario_stub collection"
+        )  
+    parser.add_argument('-c', '--config', dest='config',
+        help='Path to configuration file (defaults to $CWD/etc/dev.ini)',
+        metavar='FILE')
+    
+    args = parser.parse_args()
+    config = args.config or get_default_config()
+    logging.config.fileConfig(config) 
+    db = init_mongo()
+    log.info('creating scenario_stub collection in db={0}'.format(db.name))
+    try:
+        db.create_collection("scenario_stub")
+    except CollectionInvalid, e:
+        log.fatal(e)
+        sys.exit(-1)
+    
+    log.info('creating scenario_stub index')
+    
+    db.tracker.create_index([("stub.priority", ASCENDING), ("scenario", ASCENDING)], background=True) 
+    log.info('created index: {0}'.format(db.scenario_stub.index_information()))  
 
 def purge_stubs():
     parser = ArgumentParser(

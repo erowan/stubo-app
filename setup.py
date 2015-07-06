@@ -64,6 +64,7 @@ setup(name='stubo',
       latency_pcent =  stubo.scripts.stats:latency_pcent
       delete_test_dbs = stubo.scripts.admin:delete_test_dbs  
       create_tracker_collection = stubo.scripts.admin:create_tracker_collection  
+      create_scenario_stub_collection = stubo.scripts.admin:create_scenario_stub_collection 
       purge_stubs = stubo.scripts.admin:purge_stubs  
       """      
       )
